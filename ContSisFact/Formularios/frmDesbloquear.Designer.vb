@@ -22,12 +22,12 @@ Partial Class frmDesbloquear
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.txtUsuario = New System.Windows.Forms.TextBox
-        Me.Label1 = New System.Windows.Forms.Label
-        Me.txtPassword = New System.Windows.Forms.TextBox
-        Me.Label2 = New System.Windows.Forms.Label
-        Me.cmdSalir = New System.Windows.Forms.Button
-        Me.cmdEntrar = New System.Windows.Forms.Button
+        Me.txtUsuario = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.txtPassword = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.cmdSalir = New System.Windows.Forms.Button()
+        Me.cmdEntrar = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'txtUsuario

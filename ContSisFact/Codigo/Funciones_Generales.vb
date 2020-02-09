@@ -12,7 +12,7 @@ Module Funciones_Generales
 
     Public Function CargarConexionSQL() As Boolean
         Dim NombrePrograma As String
-        NombrePrograma = "ContSisFact_Prueba"
+        NombrePrograma = "ContSisFact"
         Try
             Dim RegistroContSis As Microsoft.Win32.RegistryKey = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("Software\" & NombrePrograma, True)
             Dim R_ConexionBD As Microsoft.Win32.RegistryKey
@@ -22,7 +22,7 @@ Module Funciones_Generales
                 R_ConexionBD.SetValue("SERVER", "(local)") 'R_ConexionBD.SetValue("SERVER", "192.168.1.12")
                 R_ConexionBD.SetValue("USER", "sa") 'R_ConexionBD.SetValue("USER", "ecsesa")
                 R_ConexionBD.SetValue("PWD", "sa123+") 'R_ConexionBD.SetValue("PWD", "prueba123")
-                R_ConexionBD.SetValue("BASEDATOS", "TSOZANET_05122016") 'R_ConexionBD.SetValue("BASEDATOS", "Ecsesa")
+                R_ConexionBD.SetValue("BASEDATOS", "ECSESA") 'R_ConexionBD.SetValue("BASEDATOS", "Ecsesa")
             Else
                 R_ConexionBD = RegistroContSis.OpenSubKey("ConexionBD", True)
                 If R_ConexionBD Is Nothing Then
@@ -30,13 +30,13 @@ Module Funciones_Generales
                     R_ConexionBD.SetValue("SERVER", "(local)") 'R_ConexionBD.SetValue("SERVER", "192.168.1.12")
                     R_ConexionBD.SetValue("USER", "sa") 'R_ConexionBD.SetValue("USER", "ecsesa")
                     R_ConexionBD.SetValue("PWD", "sa123+") 'R_ConexionBD.SetValue("PWD", "prueba123")
-                    R_ConexionBD.SetValue("BASEDATOS", "TSOZANET_05122016") 'R_ConexionBD.SetValue("BASEDATOS", "Ecsesa")
+                    R_ConexionBD.SetValue("BASEDATOS", "ECSESA") 'R_ConexionBD.SetValue("BASEDATOS", "Ecsesa")
                 End If
             End If
             strServerSQL = R_ConexionBD.GetValue("SERVER", "(local)")
             strUserSQL = R_ConexionBD.GetValue("USER", "sa")
             strPasswordSQL = R_ConexionBD.GetValue("PWD", "sa123+")
-            strBaseDatosSQL = R_ConexionBD.GetValue("BASEDATOS", "TSOZANET_05122016")
+            strBaseDatosSQL = R_ConexionBD.GetValue("BASEDATOS", "ECSESA")
             strConexion = "Data Source=" + strServerSQL + ";Initial Catalog=" + strBaseDatosSQL + ";Persist Security Info=True;User ID=" + strUserSQL + ";Password=" & strPasswordSQL & ";Connection Timeout=0"
             CN.ConnectionString = strConexion
             'CN.ConnectionString = "Dsn=Abacus;sourcedb=\\192.168.1.108\tpm\Aalfs\Abacus\dbfs\;sourcetype=DBF;exclusive=No;backgroundfetch=Yes;collate=Machine" 'strConexion

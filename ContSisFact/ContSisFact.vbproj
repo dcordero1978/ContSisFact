@@ -47,11 +47,22 @@
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\mini-software-erp.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Infragistics2.Shared.v9.1, Version=9.1.20091.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
+    <Reference Include="Infragistics2.Win.UltraWinExplorerBar.v9.1, Version=9.1.20091.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="Infragistics2.Win.v9.1, Version=9.1.20091.1000, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -73,6 +84,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
     <Compile Include="Codigo\Cls_Lista.vb" />
     <Compile Include="Codigo\Funciones_Generales.vb" />
     <Compile Include="Codigo\VariablesGlobales.vb" />
@@ -83,10 +95,46 @@
       <DependentUpon>Form1.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Formularios\frmCompras.Designer.vb">
+      <DependentUpon>frmCompras.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmCompras.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Formularios\frmDesbloquear.Designer.vb">
       <DependentUpon>frmDesbloquear.vb</DependentUpon>
     </Compile>
     <Compile Include="Formularios\frmDesbloquear.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmFactSaldoXVendedor.Designer.vb">
+      <DependentUpon>frmFactSaldoXVendedor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmFactSaldoXVendedor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmFacturas.Designer.vb">
+      <DependentUpon>frmFacturas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmFacturas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmPedidos.Designer.vb">
+      <DependentUpon>frmPedidos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmPedidos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmServer.Designer.vb">
+      <DependentUpon>frmServer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmServer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\MenuPrincipal.Designer.vb">
+      <DependentUpon>MenuPrincipal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\MenuPrincipal.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -106,9 +154,16 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frmDesbloquear.resx">
       <DependentUpon>frmDesbloquear.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\MenuPrincipal.resx">
+      <DependentUpon>MenuPrincipal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -117,6 +172,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -128,7 +184,9 @@
     </None>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Actualizar1.jpg" />
+  </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
       <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
@@ -157,6 +215,354 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\descarga.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Detalle1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EXCEL0D.ICO" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EXIT00C.ICO" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Imprimir3.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\listado1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Listado3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\8098.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Access_030.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Access_032.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Buscar1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Candado.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Casa.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\centralizador.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CLOCK05.ICO" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CLOCK06.ICO" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Copy of centralizador.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Copy of estados_contables.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Detalle2.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Disco1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Disco2.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Disco3.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DOCL.ICO" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Eliminar Usuario.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Eliminar.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Eliminar2.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\estados_contables.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Furgon1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Idea.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Imprimir.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Imprimir2.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Libro1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Libro2.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\liquidador_iva.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Llave.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Llave2.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Llave3.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lupa.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mini-ecommerce.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mini-planes-hosting.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mini-software-alquiler.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mini-software-comercio-exterior.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mini-software-contable.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mini-software-control-biometrico.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mini-software-crm.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mini-software-erp.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mini-software-gestion-comercial.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mini-software-inmobiliarias.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mini-software-produccion.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mini-software-restaurantes.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OK.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OK2.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OK3.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\OOFL.ICO" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Reloj1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RESPALDAR1.ICO" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RESPALDAR2.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RESPALDAR3.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Resportes1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tangogestioncashflow.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tangogestioncompras.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tangogestioncontabilidad.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tangogestioncontrol_de_horarios.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tangogestionfondos.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tangogestionimportaciones_.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tangogestionImpresoraFiscal_Home.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tangogestionproveedores.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tangogestionstock.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tangogestiontablero.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tangogestiontableroautom.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tangogestiontgsueldos.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tangogestionventas.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tasa_cafe.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Usuario.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Usuario2.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Usuario3.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Usuario21.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\YES01F.ICO" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\centralizador.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\copy.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cut.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\deshacer.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\estados_contables.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\liquidador_iva.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mini-ecommerce.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mini-planes-hosting.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mini-software-alquiler.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mini-software-comercio-exterior.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mini-software-contable.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mini-software-control-biometrico.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mini-software-crm.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mini-software-erp.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mini-software-gestion-comercial.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mini-software-inmobiliarias.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mini-software-produccion.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mini-software-restaurantes.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paste.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tangogestioncashflow.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tangogestioncontabilidad.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tangogestioncontrol_de_horarios.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tangogestionfondos.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tangogestionimportaciones_.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tangogestionImpresoraFiscal_Home.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tangogestionproveedores.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tangogestionstock.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tangogestiontablero.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tangogestiontableroautom.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tangogestiontgsueldos.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tangogestionventas.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tasa_cafe.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\consultoria-empresas.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\programas-empresas.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sistemas-empresas.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\software-empresas.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\soluciones-empresas.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

@@ -101,12 +101,12 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Busca un recurso adaptado de tipo System.Drawing.Icon similar a (Icono).
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property Buscar1() As System.Drawing.Icon
+        Friend ReadOnly Property Buscar1() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("Buscar1", resourceCulture)
-                Return CType(obj,System.Drawing.Icon)
+                Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
         
@@ -351,22 +351,22 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Busca un recurso adaptado de tipo System.Drawing.Icon similar a (Icono).
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property EXCEL0D() As System.Drawing.Icon
+        Friend ReadOnly Property EXCEL0D() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("EXCEL0D", resourceCulture)
-                Return CType(obj,System.Drawing.Icon)
+                Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
         
         '''<summary>
-        '''  Busca un recurso adaptado de tipo System.Drawing.Icon similar a (Icono).
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property EXIT00C() As System.Drawing.Icon
+        Friend ReadOnly Property EXIT00C() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("EXIT00C", resourceCulture)
-                Return CType(obj,System.Drawing.Icon)
+                Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
         
@@ -411,12 +411,12 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Busca un recurso adaptado de tipo System.Drawing.Icon similar a (Icono).
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property Imprimir2() As System.Drawing.Icon
+        Friend ReadOnly Property Imprimir2() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("Imprimir2", resourceCulture)
-                Return CType(obj,System.Drawing.Icon)
+                Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
         
@@ -771,12 +771,12 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Busca un recurso adaptado de tipo System.Drawing.Icon similar a (Icono).
+        '''  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         '''</summary>
-        Friend ReadOnly Property OK() As System.Drawing.Icon
+        Friend ReadOnly Property OK() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("OK", resourceCulture)
-                Return CType(obj,System.Drawing.Icon)
+                Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
         
@@ -1181,7 +1181,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Busca una cadena traducida similar a Sistema de reportes para SIAF.
+        '''  Busca una cadena traducida similar a Sistema de reportes para SIAF3X.
         '''</summary>
         Friend ReadOnly Property TituloAplicacion() As String
             Get

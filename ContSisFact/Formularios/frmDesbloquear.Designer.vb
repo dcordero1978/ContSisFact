@@ -70,6 +70,7 @@ Partial Class frmDesbloquear
         '
         'cmdSalir
         '
+        Me.cmdSalir.Image = Global.ContSisFact.My.Resources.Resources.EXIT00C
         Me.cmdSalir.Location = New System.Drawing.Point(279, 103)
         Me.cmdSalir.Name = "cmdSalir"
         Me.cmdSalir.Size = New System.Drawing.Size(108, 62)
@@ -80,6 +81,7 @@ Partial Class frmDesbloquear
         '
         'cmdEntrar
         '
+        Me.cmdEntrar.Image = Global.ContSisFact.My.Resources.Resources.OK
         Me.cmdEntrar.Location = New System.Drawing.Point(131, 103)
         Me.cmdEntrar.Name = "cmdEntrar"
         Me.cmdEntrar.Size = New System.Drawing.Size(108, 62)

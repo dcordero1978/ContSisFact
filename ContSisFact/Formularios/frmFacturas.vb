@@ -7,6 +7,7 @@
         MFormato(2).Formato = "dd-MMM-yyyy"
         MFormato(3).Formato = "dd-MMM-yyyy"
 
+
         LLenar_List_View("select Numero_de_Documento, case tipo when 1 then 'Contado' when 2 then 'Crédito' else 'No Definida' end AS TipoFactura, Fecha, FechaVencimiento, Nombre_del_Cliente, Total_en_Ventas, Total_en_Impuesto, Total_Neto, case when Anulada = 0 then 'No' else 'Si' end as Anulada, Tipo_de_Cambio from Facturas order by cast(Numero_de_Documento as int)", lstLista, CN, MFormato, False, True, True)
     End Sub
 

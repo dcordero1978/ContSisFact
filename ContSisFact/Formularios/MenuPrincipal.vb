@@ -92,7 +92,7 @@ Public Class MenuPrincipal
     Private Sub MenuPrincipal_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'Me.BackgroundImage = My.Resources.soluciones_empresas
         Dim Usuario As String
-        Usuario = "Juliox"
+        Usuario = "Julio"
         If Usuario = "Julio" Then
             MiBarra.Groups("ReportesJulio").Visible = True
             MiBarra.Groups("Compras").Visible = False

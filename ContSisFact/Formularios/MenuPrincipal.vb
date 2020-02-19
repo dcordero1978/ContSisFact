@@ -92,7 +92,7 @@ Public Class MenuPrincipal
     Private Sub MenuPrincipal_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'Me.BackgroundImage = My.Resources.soluciones_empresas
         Dim Usuario As String
-        Usuario = "Julio"
+        Usuario = "Juliox"
         If Usuario = "Julio" Then
             MiBarra.Groups("ReportesJulio").Visible = True
             MiBarra.Groups("Compras").Visible = False
@@ -106,7 +106,9 @@ Public Class MenuPrincipal
         MiBarra.Groups("Facturacion").Items("ListadoFacturas").Settings.AppearancesLarge.Appearance.Image = My.Resources.Listado3
         MiBarra.Groups("Facturacion").Items("RepFactConSaldoxVend").Settings.AppearancesLarge.Appearance.Image = My.Resources.descarga
 
-        MiBarra.Groups("Sistema").Items("Salir").Settings.AppearancesLarge.Appearance.Image = My.Resources.Eliminar_Usuario
+        MiBarra.Groups("Compras").Items("RepCompras").Settings.AppearancesLarge.Appearance.Image = My.Resources.tangogestioncashflow1
+
+        MiBarra.Groups("Sistema").Items("Salir").Settings.AppearancesLarge.Appearance.Image = My.Resources.EXIT00C
 
         Me.Icon = My.Resources.mini_software_erp
 

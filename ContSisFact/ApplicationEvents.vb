@@ -8,6 +8,10 @@ Namespace My
     ' StartupNextInstance: Se genera cuando se inicia una aplicación de instancia única y dicha aplicación está ya activa. 
     ' NetworkAvailabilityChanged: Se genera cuando se conecta o desconecta la conexión de red.
     Partial Friend Class MyApplication
+        Protected Overrides Sub Finalize()
+            MyBase.Finalize()
+        End Sub
+
         Private Sub MyApplication_Startup(sender As Object, e As StartupEventArgs) Handles Me.Startup
             FondoEnfoque = Color.Aquamarine
             CargarConexionSQL()

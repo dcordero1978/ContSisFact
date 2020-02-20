@@ -91,16 +91,21 @@ Public Class MenuPrincipal
 
     Private Sub MenuPrincipal_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'Me.BackgroundImage = My.Resources.soluciones_empresas
-        Dim Usuario As String
-        Usuario = "Juliox"
-        If Usuario = "Julio" Then
-            MiBarra.Groups("ReportesJulio").Visible = True
-            MiBarra.Groups("Compras").Visible = False
-        Else
-            MiBarra.Groups("ReportesJulio").Visible = False
-            MiBarra.Groups("Compras").Visible = True
-        End If
 
+        Select Case oUsuario.Perfil
+            Case 2
+                MiBarra.Groups("ReportesJulio").Visible = True
+                MiBarra.Groups("Compras").Visible = False
+            Case 1
+                MiBarra.Groups("ReportesJulio").Visible = True
+                MiBarra.Groups("Compras").Visible = True
+            Case 3
+                MiBarra.Groups("ReportesJulio").Visible = False
+                MiBarra.Groups("Compras").Visible = True
+            Case 4
+                MiBarra.Groups("ReportesJulio").Visible = False
+                MiBarra.Groups("Compras").Visible = False
+        End Select
 
         MiBarra.Groups("Facturacion").Items("ListadoPedidos").Settings.AppearancesLarge.Appearance.Image = My.Resources.listado1
         MiBarra.Groups("Facturacion").Items("ListadoFacturas").Settings.AppearancesLarge.Appearance.Image = My.Resources.Listado3
@@ -113,6 +118,10 @@ Public Class MenuPrincipal
         Me.Icon = My.Resources.mini_software_erp
 
 
+
     End Sub
 
+    Private Sub MenuPrincipal_Closed(sender As Object, e As EventArgs) Handles Me.Closed
+        frmLoginForm.Close()
+    End Sub
 End Class

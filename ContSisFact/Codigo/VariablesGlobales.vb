@@ -2,7 +2,7 @@
     Public Const TituloMensages = "SGC :: Sistema Auxiliar de Bonos"
     Public Const MensageSalir = "Sr. Usuario: Al hacer click en 'Si' se perderan todos los datos que no haya guardado. Desea Salir?"
 
-    Public USUARIO As String
+    Public oUsuario As Usuario
     Public USUARIO_AUTORIZA As String
     Public NombreUsuario As String
     Public bSuperAdmin As Integer

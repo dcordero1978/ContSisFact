@@ -33,6 +33,7 @@ Module Funciones_Generales
                     R_ConexionBD.SetValue("BASEDATOS", "ECSESA") 'R_ConexionBD.SetValue("BASEDATOS", "Ecsesa")
                 End If
             End If
+
             strServerSQL = R_ConexionBD.GetValue("SERVER", "(local)")
             strUserSQL = R_ConexionBD.GetValue("USER", "sa")
             strPasswordSQL = R_ConexionBD.GetValue("PWD", "sa123+")
@@ -600,7 +601,7 @@ Module Funciones_Generales
         ValidaBoton = 0
         Try
             If Not Vacio(Tag) Then
-                idusuario = NZ(DameCampoSQL("select idusuario from SEG_Usuarios where login = '" & USUARIO & "' and activo = 1", "idusuario", CN), 0)
+                idusuario = NZ(DameCampoSQL("select idusuario from SEG_Usuarios where login = '" & oUsuario.Usuario & "' and activo = 1", "idusuario", CN), 0)
                 ValidaBoton = CargarPerfil(idusuario, CInt(Tag))
             Else
                 ValidaBoton = 1
@@ -620,7 +621,7 @@ Module Funciones_Generales
                     CargarPerfil = 0
                 Case 0
                     CargarPerfil = 1
-                    USUARIO_AUTORIZA = VariablesGlobales.USUARIO
+                    USUARIO_AUTORIZA = VariablesGlobales.oUsuario.Usuario
                 Case 1
                     frmDesbloquear.Perfil = Perfil
                     frmDesbloquear.ShowDialog()

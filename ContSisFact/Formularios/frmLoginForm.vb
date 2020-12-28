@@ -20,7 +20,7 @@ Public Class frmLoginForm
             oUsuario.Id = ds.Tables(0).Rows(0).Item("id").ToString()
             oUsuario.Usuario = ds.Tables(0).Rows(0).Item("usuario").ToString()
             oUsuario.Nombre = ds.Tables(0).Rows(0).Item("nombre").ToString()
-            oUsuario.Perfil = ds.Tables(0).Rows(0).Item("perfil").ToString()
+            oUsuario.Perfil = ds.Tables(0).Rows(0).Item("id_perfil").ToString()
             MenuPrincipal.Show()
             Me.Hide()
         End If

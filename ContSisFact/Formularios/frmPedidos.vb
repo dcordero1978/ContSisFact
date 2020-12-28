@@ -7,7 +7,7 @@
         MFormato(1).Formato = "dd-MMM-yyyy"
         MFormato(2).Formato = "dd-MMM-yyyy"
 
-        LLenar_List_View("select Numero_de_Documento, Fecha, FechaVencimiento, Nombre_del_Cliente, Total_en_Ventas, Total_en_Impuesto, Total_Neto, case when Anulada = 0 then 'No' else 'Si' end as Anulada, Tipo_de_Cambio from Pedidos where TipoDoc = 4 /*and tipo = 2*/ order by Numero_de_Documento", lstLista, CN, MFormato, False, True, True)
+        LLenar_List_View("select Numero_de_Documento, Fecha, FechaVencimiento, Nombre_del_Cliente, Total_en_Ventas, Total_en_Impuesto, Total_Neto, case when Anulada = 0 then 'No' else 'Si' end as Anulada, Tipo_de_Cambio from Pedidos where TipoDoc = 4 /*and tipo = 2*/ order by Numero_de_Documento desc", lstLista, CN, MFormato, False, True, True)
     End Sub
 
     Private Sub cmdVerCotizacion_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdVerCotizacion.Click
@@ -32,14 +32,14 @@
 
     Private Sub cmdBuscar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdBuscar.Click
         If Vacio(txtTextoBusqueda.Text) Then
-            LLenar_List_View("select Numero_de_Documento, Fecha, FechaVencimiento, Nombre_del_Cliente, Total_en_Ventas, Total_en_Impuesto, Total_Neto, case when Anulada = 0 then 'No' else 'Si' end as Anulada, Tipo_de_Cambio from Pedidos where TipoDoc = 4 order by Numero_de_Documento", lstLista, CN, MFormato, False, True, True)
+            LLenar_List_View("select Numero_de_Documento, Fecha, FechaVencimiento, Nombre_del_Cliente, Total_en_Ventas, Total_en_Impuesto, Total_Neto, case when Anulada = 0 then 'No' else 'Si' end as Anulada, Tipo_de_Cambio from Pedidos where TipoDoc = 4 order by Numero_de_Documento desc", lstLista, CN, MFormato, False, True, True)
         Else
             If txtTipoBusqueda.SelectedIndex = 0 Then
-                LLenar_List_View("select Numero_de_Documento, Fecha, FechaVencimiento, Nombre_del_Cliente, Total_en_Ventas, Total_en_Impuesto, Total_Neto, case when Anulada = 0 then 'No' else 'Si' end as Anulada, Tipo_de_Cambio from Pedidos where TipoDoc = 4 and Numero_de_Documento like '%" & txtTextoBusqueda.Text & "%' order by Numero_de_Documento", lstLista, CN, MFormato, False, True, True)
+                LLenar_List_View("select Numero_de_Documento, Fecha, FechaVencimiento, Nombre_del_Cliente, Total_en_Ventas, Total_en_Impuesto, Total_Neto, case when Anulada = 0 then 'No' else 'Si' end as Anulada, Tipo_de_Cambio from Pedidos where TipoDoc = 4 and Numero_de_Documento like '%" & txtTextoBusqueda.Text & "%' order by Numero_de_Documento desc", lstLista, CN, MFormato, False, True, True)
             End If
             If txtTipoBusqueda.SelectedIndex = 1 Then
                 If IsDate(txtTextoBusqueda.Text) Then
-                    LLenar_List_View("select Numero_de_Documento, Fecha, FechaVencimiento, Nombre_del_Cliente, Total_en_Ventas, Total_en_Impuesto, Total_Neto, case when Anulada = 0 then 'No' else 'Si' end as Anulada, Tipo_de_Cambio from Pedidos where TipoDoc = 4 and Fecha = '" & Format(CDate(txtTextoBusqueda.Text), "yyyy-MM-dd") & "' order by Numero_de_Documento", lstLista, CN, MFormato, False, True, True)
+                    LLenar_List_View("select Numero_de_Documento, Fecha, FechaVencimiento, Nombre_del_Cliente, Total_en_Ventas, Total_en_Impuesto, Total_Neto, case when Anulada = 0 then 'No' else 'Si' end as Anulada, Tipo_de_Cambio from Pedidos where TipoDoc = 4 and Fecha = '" & Format(CDate(txtTextoBusqueda.Text), "yyyy-MM-dd") & "' order by Numero_de_Documento desc", lstLista, CN, MFormato, False, True, True)
                 Else
                     MsgBox("Sr. Usuario: Por favor digite una fecha válida")
                     Exit Sub
@@ -47,7 +47,7 @@
             End If
 
             If txtTipoBusqueda.SelectedIndex = 2 Then
-                LLenar_List_View("select Numero_de_Documento, Fecha, FechaVencimiento, Nombre_del_Cliente, Total_en_Ventas, Total_en_Impuesto, Total_Neto, case when Anulada = 0 then 'No' else 'Si' end as Anulada, Tipo_de_Cambio from Pedidos where TipoDoc = 4 /*and tipo = 2*/ and Nombre_del_Cliente like '%" & txtTextoBusqueda.Text & "%' order by Numero_de_Documento", lstLista, CN, MFormato, False, True, True)
+                LLenar_List_View("select Numero_de_Documento, Fecha, FechaVencimiento, Nombre_del_Cliente, Total_en_Ventas, Total_en_Impuesto, Total_Neto, case when Anulada = 0 then 'No' else 'Si' end as Anulada, Tipo_de_Cambio from Pedidos where TipoDoc = 4 /*and tipo = 2*/ and Nombre_del_Cliente like '%" & txtTextoBusqueda.Text & "%' order by Numero_de_Documento desc", lstLista, CN, MFormato, False, True, True)
             End If
         End If
     End Sub
@@ -62,5 +62,8 @@
 
     Private Sub txtTextoBusqueda_Leave(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtTextoBusqueda.Leave
         DesEnfoque(sender)
+    End Sub
+    Private Sub lstLista_DoubleClick(sender As Object, e As EventArgs) Handles lstLista.DoubleClick
+        cmdVerCotizacion_Click(sender, e)
     End Sub
 End Class

@@ -317,6 +317,10 @@ Partial Public Class MyDs
         
         Private columnExentoImpuesto As Global.System.Data.DataColumn
         
+        Private columnObservaciones As Global.System.Data.DataColumn
+        
+        Private columntipo As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub New()
@@ -489,6 +493,22 @@ Partial Public Class MyDs
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property ObservacionesColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnObservaciones
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property tipoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columntipo
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -542,9 +562,11 @@ Partial Public Class MyDs
                     ByVal Precio_Unitario As Decimal,  _
                     ByVal Subtotal As Double,  _
                     ByVal TipoMoneda As Byte,  _
-                    ByVal ExentoImpuesto As Boolean) As sp_d_FacturaPedidodRow
+                    ByVal ExentoImpuesto As Boolean,  _
+                    ByVal Observaciones As String,  _
+                    ByVal tipo As Byte) As sp_d_FacturaPedidodRow
             Dim rowsp_d_FacturaPedidodRow As sp_d_FacturaPedidodRow = CType(Me.NewRow,sp_d_FacturaPedidodRow)
-            Dim columnValuesArray() As Object = New Object() {Codigo_Factura, NombreCliente, Telefono, Contacto, RUC, Direccion, Vendedor, Plazo, FechaPedido, Cantidad, UnidadMedida, Codigo_Producto, Descripcion, Precio_Unitario, Subtotal, TipoMoneda, ExentoImpuesto}
+            Dim columnValuesArray() As Object = New Object() {Codigo_Factura, NombreCliente, Telefono, Contacto, RUC, Direccion, Vendedor, Plazo, FechaPedido, Cantidad, UnidadMedida, Codigo_Producto, Descripcion, Precio_Unitario, Subtotal, TipoMoneda, ExentoImpuesto, Observaciones, tipo}
             rowsp_d_FacturaPedidodRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowsp_d_FacturaPedidodRow)
             Return rowsp_d_FacturaPedidodRow
@@ -584,6 +606,8 @@ Partial Public Class MyDs
             Me.columnSubtotal = MyBase.Columns("Subtotal")
             Me.columnTipoMoneda = MyBase.Columns("TipoMoneda")
             Me.columnExentoImpuesto = MyBase.Columns("ExentoImpuesto")
+            Me.columnObservaciones = MyBase.Columns("Observaciones")
+            Me.columntipo = MyBase.Columns("tipo")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -623,6 +647,10 @@ Partial Public Class MyDs
             MyBase.Columns.Add(Me.columnTipoMoneda)
             Me.columnExentoImpuesto = New Global.System.Data.DataColumn("ExentoImpuesto", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnExentoImpuesto)
+            Me.columnObservaciones = New Global.System.Data.DataColumn("Observaciones", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnObservaciones)
+            Me.columntipo = New Global.System.Data.DataColumn("tipo", GetType(Byte), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columntipo)
             Me.columnCodigo_Factura.AllowDBNull = false
             Me.columnCodigo_Factura.MaxLength = 10
             Me.columnNombreCliente.ReadOnly = true
@@ -649,6 +677,9 @@ Partial Public Class MyDs
             Me.columnSubtotal.ReadOnly = true
             Me.columnTipoMoneda.ReadOnly = true
             Me.columnExentoImpuesto.ReadOnly = true
+            Me.columnObservaciones.ReadOnly = true
+            Me.columnObservaciones.MaxLength = 255
+            Me.columntipo.AllowDBNull = false
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1044,6 +1075,33 @@ Partial Public Class MyDs
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property Observaciones() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablesp_d_FacturaPedidod.ObservacionesColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("El valor de la columna 'Observaciones' de la tabla 'sp_d_FacturaPedidod' es DBNul"& _ 
+                            "l.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablesp_d_FacturaPedidod.ObservacionesColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property tipo() As Byte
+            Get
+                Return CType(Me(Me.tablesp_d_FacturaPedidod.tipoColumn),Byte)
+            End Get
+            Set
+                Me(Me.tablesp_d_FacturaPedidod.tipoColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function IsNombreClienteNull() As Boolean
             Return Me.IsNull(Me.tablesp_d_FacturaPedidod.NombreClienteColumn)
         End Function
@@ -1208,6 +1266,18 @@ Partial Public Class MyDs
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub SetExentoImpuestoNull()
             Me(Me.tablesp_d_FacturaPedidod.ExentoImpuestoColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsObservacionesNull() As Boolean
+            Return Me.IsNull(Me.tablesp_d_FacturaPedidod.ObservacionesColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetObservacionesNull()
+            Me(Me.tablesp_d_FacturaPedidod.ObservacionesColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -1394,6 +1464,8 @@ Namespace MyDsTableAdapters
             tableMapping.ColumnMappings.Add("Subtotal", "Subtotal")
             tableMapping.ColumnMappings.Add("TipoMoneda", "TipoMoneda")
             tableMapping.ColumnMappings.Add("ExentoImpuesto", "ExentoImpuesto")
+            tableMapping.ColumnMappings.Add("Observaciones", "Observaciones")
+            tableMapping.ColumnMappings.Add("tipo", "tipo")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         

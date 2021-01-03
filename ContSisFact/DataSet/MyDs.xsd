@@ -4,7 +4,7 @@
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="MiConSettings" IsAppSettingsProperty="true" Modifier="Assembly" Name="MiConSettings (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.ContSisFact.My.MySettings.GlobalReference.Default.MiConSettings" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="MiConSettings" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="MiConSettings (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.ContSisFact.My.MySettings.GlobalReference.Default.MiConSettings" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="sp_d_FacturaPedidodTableAdapter" GeneratorDataComponentClassName="sp_d_FacturaPedidodTableAdapter" Name="sp_d_FacturaPedidod" UserDataComponentName="sp_d_FacturaPedidodTableAdapter">
@@ -42,6 +42,8 @@
               <Mapping SourceColumn="Subtotal" DataSetColumn="Subtotal" />
               <Mapping SourceColumn="TipoMoneda" DataSetColumn="TipoMoneda" />
               <Mapping SourceColumn="ExentoImpuesto" DataSetColumn="ExentoImpuesto" />
+              <Mapping SourceColumn="Observaciones" DataSetColumn="Observaciones" />
+              <Mapping SourceColumn="tipo" DataSetColumn="tipo" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -133,6 +135,14 @@
               <xs:element name="Subtotal" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSubtotal" msprop:Generator_ColumnPropNameInRow="Subtotal" msprop:Generator_ColumnPropNameInTable="SubtotalColumn" msprop:Generator_UserColumnName="Subtotal" type="xs:double" minOccurs="0" />
               <xs:element name="TipoMoneda" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTipoMoneda" msprop:Generator_ColumnPropNameInRow="TipoMoneda" msprop:Generator_ColumnPropNameInTable="TipoMonedaColumn" msprop:Generator_UserColumnName="TipoMoneda" type="xs:unsignedByte" minOccurs="0" />
               <xs:element name="ExentoImpuesto" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnExentoImpuesto" msprop:Generator_ColumnPropNameInRow="ExentoImpuesto" msprop:Generator_ColumnPropNameInTable="ExentoImpuestoColumn" msprop:Generator_UserColumnName="ExentoImpuesto" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Observaciones" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnObservaciones" msprop:Generator_ColumnPropNameInRow="Observaciones" msprop:Generator_ColumnPropNameInTable="ObservacionesColumn" msprop:Generator_UserColumnName="Observaciones" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="tipo" msprop:Generator_ColumnVarNameInTable="columntipo" msprop:Generator_ColumnPropNameInRow="tipo" msprop:Generator_ColumnPropNameInTable="tipoColumn" msprop:Generator_UserColumnName="tipo" type="xs:unsignedByte" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

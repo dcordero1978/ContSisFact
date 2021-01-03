@@ -66,6 +66,16 @@ Public Class MenuPrincipal
             MyForm.Show()
         End If
 
+        If e.Item.Key = "Consignacion" And e.Item.Group.Key = "Facturacion" Then
+            Dim MyForm As Form
+
+            MyForm = frmPedidosAConsignacion
+
+            MyForm.MdiParent = Me
+            MyForm.WindowState = FormWindowState.Maximized
+            MyForm.Show()
+        End If
+
         If e.Item.Key = "RepCompras" And e.Item.Group.Key = "Compras" Then
             Dim MyForm As Form
 

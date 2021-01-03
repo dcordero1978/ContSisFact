@@ -156,6 +156,12 @@
     <Compile Include="Formularios\frmCompras.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Formularios\frmConsignacion.Designer.vb">
+      <DependentUpon>frmConsignacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmConsignacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Formularios\frmDesbloquear.Designer.vb">
       <DependentUpon>frmDesbloquear.vb</DependentUpon>
     </Compile>
@@ -184,6 +190,12 @@
       <DependentUpon>frmPedidos.vb</DependentUpon>
     </Compile>
     <Compile Include="Formularios\frmPedidos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmPedidosAConsignacion.Designer.vb">
+      <DependentUpon>frmPedidosAConsignacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmPedidosAConsignacion.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Formularios\frmServer.Designer.vb">
@@ -225,6 +237,12 @@
       <DependentUpon>rptFactura.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reportes\rptConsignacion.vb">
+      <DependentUpon>rptConsignacion.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Reportes\rptFacturaPedido.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -238,6 +256,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frmCompras.resx">
       <DependentUpon>frmCompras.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmConsignacion.resx">
+      <DependentUpon>frmConsignacion.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frmDesbloquear.resx">
       <DependentUpon>frmDesbloquear.vb</DependentUpon>
@@ -253,6 +274,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frmPedidos.resx">
       <DependentUpon>frmPedidos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmPedidosAConsignacion.resx">
+      <DependentUpon>frmPedidosAConsignacion.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frmServer.resx">
       <DependentUpon>frmServer.vb</DependentUpon>
@@ -270,6 +294,10 @@
     <EmbeddedResource Include="Reportes\rptFactura.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptFactura.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\rptConsignacion.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptConsignacion.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\rptFacturaPedido.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

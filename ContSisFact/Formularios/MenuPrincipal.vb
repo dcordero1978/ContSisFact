@@ -94,6 +94,15 @@ Public Class MenuPrincipal
             MyForm.Show()
         End If
 
+        If e.Item.Key = "HabilitarPrecios" And e.Item.Group.Key = "ReportesJulio" Then
+            Dim MyForm As Form
+
+            MyForm = frmHabilitarPrecios
+            MyForm.MdiParent = Me
+            MyForm.WindowState = FormWindowState.Maximized
+            MyForm.Show()
+        End If
+
         If e.Item.Key = "Salir" And e.Item.Group.Key = "Sistema" Then
             Application.Exit()
         End If

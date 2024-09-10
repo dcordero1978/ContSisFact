@@ -32,8 +32,9 @@ Partial Class MenuPrincipal
         Dim UltraExplorerBarItem5 As Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem = New Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem()
         Dim UltraExplorerBarGroup3 As Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup = New Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup()
         Dim UltraExplorerBarItem6 As Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem = New Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem()
-        Dim UltraExplorerBarGroup4 As Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup = New Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup()
         Dim UltraExplorerBarItem7 As Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem = New Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem()
+        Dim UltraExplorerBarGroup4 As Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup = New Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup()
+        Dim UltraExplorerBarItem8 As Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem = New Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem()
         Me.MenuStrip = New System.Windows.Forms.MenuStrip()
         Me.WindowsMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.CascadeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -51,11 +52,12 @@ Partial Class MenuPrincipal
         '
         'MenuStrip
         '
+        Me.MenuStrip.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.WindowsMenu})
         Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip.MdiWindowListItem = Me.WindowsMenu
         Me.MenuStrip.Name = "MenuStrip"
-        Me.MenuStrip.Size = New System.Drawing.Size(849, 24)
+        Me.MenuStrip.Size = New System.Drawing.Size(1132, 30)
         Me.MenuStrip.TabIndex = 5
         Me.MenuStrip.Text = "MenuStrip"
         '
@@ -63,46 +65,48 @@ Partial Class MenuPrincipal
         '
         Me.WindowsMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CascadeToolStripMenuItem, Me.TileVerticalToolStripMenuItem, Me.TileHorizontalToolStripMenuItem, Me.CloseAllToolStripMenuItem})
         Me.WindowsMenu.Name = "WindowsMenu"
-        Me.WindowsMenu.Size = New System.Drawing.Size(66, 20)
+        Me.WindowsMenu.Size = New System.Drawing.Size(82, 26)
         Me.WindowsMenu.Text = "&Ventanas"
         '
         'CascadeToolStripMenuItem
         '
         Me.CascadeToolStripMenuItem.Name = "CascadeToolStripMenuItem"
-        Me.CascadeToolStripMenuItem.Size = New System.Drawing.Size(217, 22)
+        Me.CascadeToolStripMenuItem.Size = New System.Drawing.Size(273, 26)
         Me.CascadeToolStripMenuItem.Text = "&Cascada"
         '
         'TileVerticalToolStripMenuItem
         '
         Me.TileVerticalToolStripMenuItem.Name = "TileVerticalToolStripMenuItem"
-        Me.TileVerticalToolStripMenuItem.Size = New System.Drawing.Size(217, 22)
+        Me.TileVerticalToolStripMenuItem.Size = New System.Drawing.Size(273, 26)
         Me.TileVerticalToolStripMenuItem.Text = "Organizar &Verticalmente"
         '
         'TileHorizontalToolStripMenuItem
         '
         Me.TileHorizontalToolStripMenuItem.Name = "TileHorizontalToolStripMenuItem"
-        Me.TileHorizontalToolStripMenuItem.Size = New System.Drawing.Size(217, 22)
+        Me.TileHorizontalToolStripMenuItem.Size = New System.Drawing.Size(273, 26)
         Me.TileHorizontalToolStripMenuItem.Text = "Organizar &Horizontalmente"
         '
         'CloseAllToolStripMenuItem
         '
         Me.CloseAllToolStripMenuItem.Name = "CloseAllToolStripMenuItem"
-        Me.CloseAllToolStripMenuItem.Size = New System.Drawing.Size(217, 22)
+        Me.CloseAllToolStripMenuItem.Size = New System.Drawing.Size(273, 26)
         Me.CloseAllToolStripMenuItem.Text = "C&errar Todas las Ventanas"
         '
         'StatusStrip
         '
+        Me.StatusStrip.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.StatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel})
-        Me.StatusStrip.Location = New System.Drawing.Point(0, 431)
+        Me.StatusStrip.Location = New System.Drawing.Point(0, 532)
         Me.StatusStrip.Name = "StatusStrip"
-        Me.StatusStrip.Size = New System.Drawing.Size(849, 22)
+        Me.StatusStrip.Padding = New System.Windows.Forms.Padding(1, 0, 19, 0)
+        Me.StatusStrip.Size = New System.Drawing.Size(1132, 26)
         Me.StatusStrip.TabIndex = 7
         Me.StatusStrip.Text = "StatusStrip"
         '
         'ToolStripStatusLabel
         '
         Me.ToolStripStatusLabel.Name = "ToolStripStatusLabel"
-        Me.ToolStripStatusLabel.Size = New System.Drawing.Size(39, 17)
+        Me.ToolStripStatusLabel.Size = New System.Drawing.Size(49, 20)
         Me.ToolStripStatusLabel.Text = "Status"
         '
         'MiBarra
@@ -130,34 +134,38 @@ Partial Class MenuPrincipal
         UltraExplorerBarGroup2.Text = "Compras"
         UltraExplorerBarItem6.Key = "Server"
         UltraExplorerBarItem6.Text = "Server"
-        UltraExplorerBarGroup3.Items.AddRange(New Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem() {UltraExplorerBarItem6})
+        UltraExplorerBarItem7.Key = "HabilitarPrecios"
+        UltraExplorerBarItem7.Text = "Habilitar / Deshabilitar Precios"
+        UltraExplorerBarGroup3.Items.AddRange(New Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem() {UltraExplorerBarItem6, UltraExplorerBarItem7})
         UltraExplorerBarGroup3.Key = "ReportesJulio"
         UltraExplorerBarGroup3.Text = "Reportes Julio"
-        UltraExplorerBarItem7.Key = "Salir"
-        UltraExplorerBarItem7.Text = "Salir del Sistema"
-        UltraExplorerBarGroup4.Items.AddRange(New Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem() {UltraExplorerBarItem7})
+        UltraExplorerBarItem8.Key = "Salir"
+        UltraExplorerBarItem8.Text = "Salir del Sistema"
+        UltraExplorerBarGroup4.Items.AddRange(New Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarItem() {UltraExplorerBarItem8})
         UltraExplorerBarGroup4.Key = "Sistema"
         UltraExplorerBarGroup4.Text = "Sistema"
         Me.MiBarra.Groups.AddRange(New Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup() {UltraExplorerBarGroup1, UltraExplorerBarGroup2, UltraExplorerBarGroup3, UltraExplorerBarGroup4})
         Me.MiBarra.GroupSettings.Style = Infragistics.Win.UltraWinExplorerBar.GroupStyle.LargeImagesWithText
-        Me.MiBarra.Location = New System.Drawing.Point(0, 24)
+        Me.MiBarra.Location = New System.Drawing.Point(0, 30)
+        Me.MiBarra.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.MiBarra.Name = "MiBarra"
         Me.MiBarra.ShowDefaultContextMenu = False
-        Me.MiBarra.Size = New System.Drawing.Size(213, 407)
+        Me.MiBarra.Size = New System.Drawing.Size(284, 502)
         Me.MiBarra.TabIndex = 10
         Me.MiBarra.UseOsThemes = Infragistics.Win.DefaultableBoolean.[True]
         '
         'MenuPrincipal
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.ClientSize = New System.Drawing.Size(849, 453)
+        Me.ClientSize = New System.Drawing.Size(1132, 558)
         Me.Controls.Add(Me.MiBarra)
         Me.Controls.Add(Me.MenuStrip)
         Me.Controls.Add(Me.StatusStrip)
         Me.IsMdiContainer = True
         Me.MainMenuStrip = Me.MenuStrip
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "MenuPrincipal"
         Me.Text = "MenuPrincipal"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized

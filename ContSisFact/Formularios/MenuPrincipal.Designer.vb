@@ -147,7 +147,7 @@ Partial Class MenuPrincipal
         Me.MiBarra.Groups.AddRange(New Infragistics.Win.UltraWinExplorerBar.UltraExplorerBarGroup() {UltraExplorerBarGroup1, UltraExplorerBarGroup2, UltraExplorerBarGroup3, UltraExplorerBarGroup4})
         Me.MiBarra.GroupSettings.Style = Infragistics.Win.UltraWinExplorerBar.GroupStyle.LargeImagesWithText
         Me.MiBarra.Location = New System.Drawing.Point(0, 30)
-        Me.MiBarra.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.MiBarra.Margin = New System.Windows.Forms.Padding(4)
         Me.MiBarra.Name = "MiBarra"
         Me.MiBarra.ShowDefaultContextMenu = False
         Me.MiBarra.Size = New System.Drawing.Size(284, 502)
@@ -165,7 +165,7 @@ Partial Class MenuPrincipal
         Me.Controls.Add(Me.StatusStrip)
         Me.IsMdiContainer = True
         Me.MainMenuStrip = Me.MenuStrip
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "MenuPrincipal"
         Me.Text = "MenuPrincipal"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized

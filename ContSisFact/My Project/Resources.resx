@@ -181,8 +181,8 @@
   <data name="tangogestioncompras" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tangogestioncompras.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Disco2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Disco2.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="mini_software_alquiler" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mini-software-alquiler.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="estados_contables1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\estados_contables.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -250,8 +250,8 @@
   <data name="Usuario2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Usuario2.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Access_030" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Access_030.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="tangogestiontableroautom" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tangogestiontableroautom.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Casa" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Casa.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -292,9 +292,6 @@
   <data name="Eliminar_Usuario" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Eliminar Usuario.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="tangogestiontableroautom" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tangogestiontableroautom.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="mini_software_crm" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mini-software-crm.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -322,14 +319,14 @@
   <data name="mini_software_restaurantes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mini-software-restaurantes.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="programas_empresas" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\programas-empresas.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Access_030" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Access_030.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="RESPALDAR2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\RESPALDAR2.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Imprimir2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Imprimir2.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Imprimir21.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="mini_software_gestion_comercial" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mini-software-gestion-comercial.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -361,6 +358,9 @@
   <data name="Imprimir" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Imprimir.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="mini_software_produccion" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mini-software-produccion.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="mini_software_restaurantes1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mini-software-restaurantes.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -371,7 +371,7 @@
     <value>..\Resources\estados_contables.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Eliminar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Eliminar.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Eliminar.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="mini_ecommerce1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mini-ecommerce.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -387,6 +387,9 @@
   </data>
   <data name="mini_software_control_biometrico1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mini-software-control-biometrico.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EXIT00C" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\EXIT00C1.ICO;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="deshacer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\deshacer.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -411,9 +414,6 @@
   </data>
   <data name="OK3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\OK3.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="mini_software_alquiler" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mini-software-alquiler.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="tangogestioncontrol_de_horarios" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tangogestioncontrol_de_horarios.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -442,14 +442,14 @@
   <data name="CLOCK05" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CLOCK05.ICO;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mini_software_produccion" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mini-software-produccion.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="tangogestiontableroautom1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tangogestiontableroautom.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="mini_software_contable1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mini-software-contable.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="EXIT00C" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\EXIT00C1.ICO;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Disco2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Disco2.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="tangogestionproveedores" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tangogestionproveedores.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -457,8 +457,8 @@
   <data name="Disco1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Disco1.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="tangogestionImpresoraFiscal_Home1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tangogestionImpresoraFiscal_Home.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="programas_empresas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\programas-empresas.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="mini_software_control_biometrico" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mini-software-control-biometrico.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -466,13 +466,13 @@
   <data name="mini_software_produccion1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mini-software-produccion.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="tangogestiontableroautom1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tangogestiontableroautom.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="tangogestionImpresoraFiscal_Home1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tangogestionImpresoraFiscal_Home.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="tangogestionstock" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tangogestionstock.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Imprimir2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Imprimir21.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Buscar11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Buscar1.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

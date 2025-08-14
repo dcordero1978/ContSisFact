@@ -8,7 +8,7 @@
         MFormato(3).Formato = "dd-MMM-yyyy"
 
 
-        LLenar_List_View("select Numero_de_Documento, case tipo when 1 then 'Contado' when 2 then 'Crédito' else 'No Definida' end AS TipoFactura, Fecha, FechaVencimiento, Nombre_del_Cliente, Total_en_Ventas, Total_en_Impuesto, Total_Neto, case when Anulada = 0 then 'No' else 'Si' end as Anulada, Tipo_de_Cambio from Facturas order by cast(Numero_de_Documento as int)", lstLista, CN, MFormato, False, True, True)
+        LLenar_List_View("select F.Numero_de_Documento, case F.tipo when 1 then 'Contado' when 2 then 'Crédito' else 'No Definida' end AS TipoFactura, F.Fecha, F.FechaVencimiento, F.Nombre_del_Cliente, F.Total_en_Ventas, F.Total_en_Impuesto, F.Total_Neto, case when F.Anulada = 0 then 'No' else 'Si' end as Anulada, FP.no_proforma from Facturas F left join dsc.FacturasProformas FP ON F.Numero_de_Documento = FP.no_factura order by cast(F.Numero_de_Documento as int) desc", lstLista, CN, MFormato, False, True, True)
     End Sub
 
     Private Sub cmdVerCotizacion_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdVerCotizacion.Click
@@ -33,14 +33,14 @@
 
     Private Sub cmdBuscar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdBuscar.Click
         If Vacio(txtTextoBusqueda.Text) Then
-            LLenar_List_View("select Numero_de_Documento, case tipo when 1 then 'Contado' when 2 then 'Crédito' else 'No Definida' end AS TipoFactura, Fecha, FechaVencimiento, Nombre_del_Cliente, Total_en_Ventas, Total_en_Impuesto, Total_Neto, case when Anulada = 0 then 'No' else 'Si' end as Anulada, Tipo_de_Cambio from Facturas order by cast(Numero_de_Documento as int)", lstLista, CN, MFormato, False, True, True)
+            LLenar_List_View("select F.Numero_de_Documento, case F.tipo when 1 then 'Contado' when 2 then 'Crédito' else 'No Definida' end AS TipoFactura, F.Fecha, F.FechaVencimiento, F.Nombre_del_Cliente, F.Total_en_Ventas, F.Total_en_Impuesto, F.Total_Neto, case when F.Anulada = 0 then 'No' else 'Si' end as Anulada, FP.no_proforma from Facturas F left join dsc.FacturasProformas FP ON F.Numero_de_Documento = FP.no_factura order by cast(Numero_de_Documento as int) desc", lstLista, CN, MFormato, False, True, True)
         Else
             If txtTipoBusqueda.SelectedIndex = 0 Then
-                LLenar_List_View("select Numero_de_Documento, case tipo when 1 then 'Contado' when 2 then 'Crédito' else 'No Definida' end AS TipoFactura, Fecha, FechaVencimiento, Nombre_del_Cliente, Total_en_Ventas, Total_en_Impuesto, Total_Neto, case when Anulada = 0 then 'No' else 'Si' end as Anulada, Tipo_de_Cambio from Facturas where Numero_de_Documento like '%" & txtTextoBusqueda.Text & "%' order by cast(Numero_de_Documento as int)", lstLista, CN, MFormato, False, True, True)
+                LLenar_List_View("select F.Numero_de_Documento, case F.tipo when 1 then 'Contado' when 2 then 'Crédito' else 'No Definida' end AS TipoFactura, F.Fecha, F.FechaVencimiento, F.Nombre_del_Cliente, F.Total_en_Ventas, F.Total_en_Impuesto, F.Total_Neto, case when F.Anulada = 0 then 'No' else 'Si' end as Anulada, FP.no_proforma from Facturas F left join dsc.FacturasProformas FP ON F.Numero_de_Documento = FP.no_factura where Numero_de_Documento like '%" & txtTextoBusqueda.Text & "%' order by cast(Numero_de_Documento as int) desc", lstLista, CN, MFormato, False, True, True)
             End If
             If txtTipoBusqueda.SelectedIndex = 1 Then
                 If IsDate(txtTextoBusqueda.Text) Then
-                    LLenar_List_View("select Numero_de_Documento, case tipo when 1 then 'Contado' when 2 then 'Crédito' else 'No Definida' end AS TipoFactura, Fecha, FechaVencimiento, Nombre_del_Cliente, Total_en_Ventas, Total_en_Impuesto, Total_Neto, case when Anulada = 0 then 'No' else 'Si' end as Anulada, Tipo_de_Cambio from Facturas where Fecha = '" & Format(CDate(txtTextoBusqueda.Text), "yyyy-MM-dd") & "' order by cast(Numero_de_Documento as int)", lstLista, CN, MFormato, False, True, True)
+                    LLenar_List_View("select F.Numero_de_Documento, case F.tipo when 1 then 'Contado' when 2 then 'Crédito' else 'No Definida' end AS TipoFactura, F.Fecha, F.FechaVencimiento, F.Nombre_del_Cliente, F.Total_en_Ventas, F.Total_en_Impuesto, F.Total_Neto, case when F.Anulada = 0 then 'No' else 'Si' end as Anulada, FP.no_proforma from Facturas F left join dsc.FacturasProformas FP ON F.Numero_de_Documento = FP.no_factura where Fecha = '" & Format(CDate(txtTextoBusqueda.Text), "yyyy-MM-dd") & "' order by cast(Numero_de_Documento as int) desc", lstLista, CN, MFormato, False, True, True)
                 Else
                     MsgBox("Sr. Usuario: Por favor digite una fecha válida")
                     Exit Sub
@@ -48,7 +48,7 @@
             End If
 
             If txtTipoBusqueda.SelectedIndex = 2 Then
-                LLenar_List_View("select Numero_de_Documento, case tipo when 1 then 'Contado' when 2 then 'Crédito' else 'No Definida' end AS TipoFactura, Fecha, FechaVencimiento, Nombre_del_Cliente, Total_en_Ventas, Total_en_Impuesto, Total_Neto, case when Anulada = 0 then 'No' else 'Si' end as Anulada, Tipo_de_Cambio from Facturas where Nombre_del_Cliente like '%" & txtTextoBusqueda.Text & "%' order by cast(Numero_de_Documento as int)", lstLista, CN, MFormato, False, True, True)
+                LLenar_List_View("select F.Numero_de_Documento, case F.tipo when 1 then 'Contado' when 2 then 'Crédito' else 'No Definida' end AS TipoFactura, F.Fecha, F.FechaVencimiento, F.Nombre_del_Cliente, F.Total_en_Ventas, F.Total_en_Impuesto, F.Total_Neto, case when F.Anulada = 0 then 'No' else 'Si' end as Anulada, FP.no_proforma from Facturas F left join dsc.FacturasProformas FP ON F.Numero_de_Documento = FP.no_factura where Nombre_del_Cliente like '%" & txtTextoBusqueda.Text & "%' order by cast(Numero_de_Documento as int) desc", lstLista, CN, MFormato, False, True, True)
             End If
         End If
     End Sub
@@ -70,6 +70,18 @@
     End Sub
 
     Private Sub cmdActualizar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdActualizar.Click
-        LLenar_List_View("select Numero_de_Documento, case tipo when 1 then 'Contado' when 2 then 'Crédito' else 'No Definida' end AS TipoFactura, Fecha, FechaVencimiento, Nombre_del_Cliente, Total_en_Ventas, Total_en_Impuesto, Total_Neto, case when Anulada = 0 then 'No' else 'Si' end as Anulada, Tipo_de_Cambio from Facturas order by cast(Numero_de_Documento as int)", lstLista, CN, MFormato, False, True, True)
+        LLenar_List_View("select F.Numero_de_Documento, case F.tipo when 1 then 'Contado' when 2 then 'Crédito' else 'No Definida' end AS TipoFactura, F.Fecha, F.FechaVencimiento, F.Nombre_del_Cliente, F.Total_en_Ventas, F.Total_en_Impuesto, F.Total_Neto, case when F.Anulada = 0 then 'No' else 'Si' end as Anulada, FP.no_proforma from Facturas F left join dsc.FacturasProformas FP ON F.Numero_de_Documento = FP.no_factura order by cast(Numero_de_Documento as int)", lstLista, CN, MFormato, False, True, True)
+    End Sub
+
+    Private Sub lstLista_DoubleClick(sender As Object, e As EventArgs) Handles lstLista.DoubleClick
+        If lstLista.SelectedItems.Count > 0 Then
+            Dim myForm As New frmFacturaProforma
+            myForm.txtFactura.Text = lstLista.SelectedItems(0).SubItems(0).Text
+            myForm.txtProforma.Text = lstLista.SelectedItems(0).SubItems(9).Text
+            myForm.ShowDialog()
+            If myForm.bSalidaDblClik Then
+                LLenar_List_View("select F.Numero_de_Documento, case F.tipo when 1 then 'Contado' when 2 then 'Crédito' else 'No Definida' end AS TipoFactura, F.Fecha, F.FechaVencimiento, F.Nombre_del_Cliente, F.Total_en_Ventas, F.Total_en_Impuesto, F.Total_Neto, case when F.Anulada = 0 then 'No' else 'Si' end as Anulada, FP.no_proforma from Facturas F left join dsc.FacturasProformas FP ON F.Numero_de_Documento = FP.no_factura order by cast(Numero_de_Documento as int) desc", lstLista, CN, MFormato, False, True, True)
+            End If
+        End If
     End Sub
 End Class

@@ -32,9 +32,14 @@ Partial Class frmHabilitarPrecios
         Me.OK_Clientes = New System.Windows.Forms.Button()
         Me.rbClientesNo = New System.Windows.Forms.RadioButton()
         Me.rbClientesYes = New System.Windows.Forms.RadioButton()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.OK_Stock = New System.Windows.Forms.Button()
+        Me.rbStockNo = New System.Windows.Forms.RadioButton()
+        Me.rbStockYes = New System.Windows.Forms.RadioButton()
         CType(Me.EventLog1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
+        Me.GroupBox3.SuspendLayout()
         Me.SuspendLayout()
         '
         'EventLog1
@@ -44,7 +49,7 @@ Partial Class frmHabilitarPrecios
         'cmdSalir
         '
         Me.cmdSalir.Image = Global.ContSisFact.My.Resources.Resources.EXIT00C
-        Me.cmdSalir.Location = New System.Drawing.Point(750, 582)
+        Me.cmdSalir.Location = New System.Drawing.Point(750, 830)
         Me.cmdSalir.Margin = New System.Windows.Forms.Padding(4)
         Me.cmdSalir.Name = "cmdSalir"
         Me.cmdSalir.Size = New System.Drawing.Size(125, 84)
@@ -152,11 +157,62 @@ Partial Class frmHabilitarPrecios
         Me.rbClientesYes.Text = "Si"
         Me.rbClientesYes.UseVisualStyleBackColor = True
         '
+        'GroupBox3
+        '
+        Me.GroupBox3.Controls.Add(Me.OK_Stock)
+        Me.GroupBox3.Controls.Add(Me.rbStockNo)
+        Me.GroupBox3.Controls.Add(Me.rbStockYes)
+        Me.GroupBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 22.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox3.Location = New System.Drawing.Point(184, 533)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Size = New System.Drawing.Size(836, 234)
+        Me.GroupBox3.TabIndex = 56
+        Me.GroupBox3.TabStop = False
+        Me.GroupBox3.Text = "Permitir Stock Negativo"
+        '
+        'OK_Stock
+        '
+        Me.OK_Stock.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.OK_Stock.Image = Global.ContSisFact.My.Resources.Resources.OK
+        Me.OK_Stock.Location = New System.Drawing.Point(566, 97)
+        Me.OK_Stock.Margin = New System.Windows.Forms.Padding(4)
+        Me.OK_Stock.Name = "OK_Stock"
+        Me.OK_Stock.Size = New System.Drawing.Size(125, 81)
+        Me.OK_Stock.TabIndex = 57
+        Me.OK_Stock.Text = "&Aceptar"
+        Me.OK_Stock.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+        '
+        'rbStockNo
+        '
+        Me.rbStockNo.AutoSize = True
+        Me.rbStockNo.Font = New System.Drawing.Font("Microsoft Sans Serif", 22.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rbStockNo.Location = New System.Drawing.Point(347, 108)
+        Me.rbStockNo.Name = "rbStockNo"
+        Me.rbStockNo.Size = New System.Drawing.Size(87, 46)
+        Me.rbStockNo.TabIndex = 55
+        Me.rbStockNo.TabStop = True
+        Me.rbStockNo.Text = "No"
+        Me.rbStockNo.UseVisualStyleBackColor = True
+        '
+        'rbStockYes
+        '
+        Me.rbStockYes.AutoSize = True
+        Me.rbStockYes.Font = New System.Drawing.Font("Microsoft Sans Serif", 22.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rbStockYes.Location = New System.Drawing.Point(347, 58)
+        Me.rbStockYes.Name = "rbStockYes"
+        Me.rbStockYes.Size = New System.Drawing.Size(72, 46)
+        Me.rbStockYes.TabIndex = 54
+        Me.rbStockYes.TabStop = True
+        Me.rbStockYes.Text = "Si"
+        Me.rbStockYes.UseVisualStyleBackColor = True
+
+        '
         'frmHabilitarPrecios
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1180, 690)
+        Me.ClientSize = New System.Drawing.Size(1180, 950)
+        Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.cmdSalir)
@@ -167,6 +223,8 @@ Partial Class frmHabilitarPrecios
         Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        Me.GroupBox3.ResumeLayout(False)
+        Me.GroupBox3.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -180,4 +238,8 @@ Partial Class frmHabilitarPrecios
     Friend WithEvents OK_Precios As Button
     Friend WithEvents rbNo As RadioButton
     Friend WithEvents rbYes As RadioButton
+    Friend WithEvents GroupBox3 As GroupBox
+    Friend WithEvents OK_Stock As Button
+    Friend WithEvents rbStockNo As RadioButton
+    Friend WithEvents rbStockYes As RadioButton
 End Class

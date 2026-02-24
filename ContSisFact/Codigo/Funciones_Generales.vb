@@ -282,18 +282,25 @@ Module Funciones_Generales
         DameCampoSQL = ""
     End Function
 
-    Public Function ExecuteSQL(ByVal SQL As String, ByVal MyCon As System.Data.SqlClient.SqlConnection, Optional ByVal MiTrans As SqlClient.SqlTransaction = Nothing, Optional ByVal MostrarError As Boolean = True) As Integer
+    ' Versión mejorada: mantiene compatibilidad, pero maneja conexión y retorna filas afectadas
+    Public Function ExecuteSQL(ByVal SQL As String, ByVal MyCon As System.Data.SqlClient.SqlConnection, Optional ByVal MiTrans As SqlClient.SqlTransaction = Nothing, Optional ByVal MostrarError As Boolean = True, Optional ByVal Parametros As Object = Nothing) As Integer
         Dim MyCommand As New SqlClient.SqlCommand
         ExecuteSQL = 0
         Try
+            If MyCon.State = ConnectionState.Closed Then MyCon.Open()
             MyCommand.CommandText = SQL
             MyCommand.Connection = MyCon
             If Not MiTrans Is Nothing Then
                 MyCommand.Transaction = MiTrans
             End If
-            MyCommand.ExecuteNonQuery()
+            If Parametros IsNot Nothing Then
+                If TypeOf Parametros Is SqlClient.SqlParameter() Then
+                    MyCommand.Parameters.AddRange(CType(Parametros, SqlClient.SqlParameter()))
+                End If
+            End If
+            ExecuteSQL = MyCommand.ExecuteNonQuery() ' Retorna filas afectadas
         Catch ex As Exception
-            ExecuteSQL = 1
+            ExecuteSQL = -1
             If MostrarError Then
                 MensageError(ex, SQL)
             End If

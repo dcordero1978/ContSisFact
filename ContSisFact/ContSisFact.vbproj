@@ -77,10 +77,13 @@
     <ManifestKeyFile>ContSisFact_3_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AxShockwaveFlashObjects, Version=1.0.0.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
@@ -262,6 +265,12 @@
     <Compile Include="Formularios\frmHabilitarPrecios.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Formularios\frmImportacionesAjustar.Designer.vb">
+      <DependentUpon>frmImportacionesAjustar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmImportacionesAjustar.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Formularios\frmLoginForm.Designer.vb">
       <DependentUpon>frmLoginForm.vb</DependentUpon>
     </Compile>
@@ -301,9 +310,7 @@
     <Compile Include="Formularios\MenuPrincipal.Designer.vb">
       <DependentUpon>MenuPrincipal.vb</DependentUpon>
     </Compile>
-    <Compile Include="Formularios\MenuPrincipal.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Formularios\MenuPrincipal.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -362,6 +369,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frmHabilitarPrecios.resx">
       <DependentUpon>frmHabilitarPrecios.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmImportacionesAjustar.resx">
+      <DependentUpon>frmImportacionesAjustar.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frmLoginForm.resx">
       <DependentUpon>frmLoginForm.vb</DependentUpon>

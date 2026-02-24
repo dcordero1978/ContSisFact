@@ -1,5 +1,4 @@
-﻿Imports System.Windows.Forms
-Public Class MenuPrincipal
+﻿Public Class MenuPrincipal
     'Private Sub ShowNewForm(ByVal sender As Object, ByVal e As EventArgs)
     '    ' Create a new instance of the child form.
     '    Dim ChildForm As New System.Windows.Forms.Form
@@ -103,6 +102,15 @@ Public Class MenuPrincipal
             MyForm.Show()
         End If
 
+        If e.Item.Key = "Importaciones" And e.Item.Group.Key = "Importaciones" Then
+            Dim MyForm As Form
+
+            MyForm = frmImportacionesAjustar
+            MyForm.MdiParent = Me
+            MyForm.WindowState = FormWindowState.Maximized
+            MyForm.Show()
+        End If
+
         If e.Item.Key = "Salir" And e.Item.Group.Key = "Sistema" Then
             Application.Exit()
         End If
@@ -115,9 +123,11 @@ Public Class MenuPrincipal
             Case 2
                 MiBarra.Groups("ReportesJulio").Visible = True
                 MiBarra.Groups("Compras").Visible = False
+                MiBarra.Groups("Importaciones").Visible = True
             Case 1
                 MiBarra.Groups("ReportesJulio").Visible = True
                 MiBarra.Groups("Compras").Visible = True
+                MiBarra.Groups("importaciones").Visible = True
             Case 3
                 MiBarra.Groups("ReportesJulio").Visible = False
                 MiBarra.Groups("Compras").Visible = True
@@ -129,9 +139,13 @@ Public Class MenuPrincipal
         MiBarra.Groups("Facturacion").Items("ListadoPedidos").Settings.AppearancesLarge.Appearance.Image = My.Resources.listado1
         MiBarra.Groups("Facturacion").Items("ListadoFacturas").Settings.AppearancesLarge.Appearance.Image = My.Resources.Listado3
         MiBarra.Groups("Facturacion").Items("RepFactConSaldoxVend").Settings.AppearancesLarge.Appearance.Image = My.Resources.descarga
+        MiBarra.Groups("Facturacion").Items("Consignacion").Settings.AppearancesLarge.Appearance.Image = My.Resources.Furgon1.ToBitmap()
 
         MiBarra.Groups("Compras").Items("RepCompras").Settings.AppearancesLarge.Appearance.Image = My.Resources.tangogestioncashflow1
 
+        MiBarra.Groups("ReportesJulio").Items("Server").Settings.AppearancesLarge.Appearance.Image = My.Resources.Resportes1.ToBitmap()
+        MiBarra.Groups("ReportesJulio").Items("HabilitarPrecios").Settings.AppearancesLarge.Appearance.Image = My.Resources.Candado.ToBitmap()
+        MiBarra.Groups("Importaciones").Items("Importaciones").Settings.AppearancesLarge.Appearance.Image = My.Resources.tangogestionimportaciones_.ToBitmap()
         MiBarra.Groups("Sistema").Items("Salir").Settings.AppearancesLarge.Appearance.Image = My.Resources.EXIT00C
 
         Me.Icon = My.Resources.mini_software_erp

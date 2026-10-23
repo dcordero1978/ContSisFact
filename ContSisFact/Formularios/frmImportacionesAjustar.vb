@@ -304,7 +304,4 @@
         End If
     End Sub
 
-    Private Sub lstLista_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstLista.SelectedIndexChanged
-
-    End Sub
 End Class

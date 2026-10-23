@@ -14,7 +14,12 @@ Namespace My
 
         Private Sub MyApplication_Startup(sender As Object, e As StartupEventArgs) Handles Me.Startup
             FondoEnfoque = Color.Aquamarine
-            CargarConexionSQL()
+            ' Si no se logra establecer la conexión (clave de registro ausente/incompleta y el
+            ' usuario cancela, o la conexión falla), abortar el arranque de forma controlada.
+            If Not CargarConexionSQL() Then
+                MsgBox("No se pudo establecer la conexión a la base de datos. La aplicación se cerrará.", MsgBoxStyle.Critical, "ContSisFact")
+                End
+            End If
         End Sub
     End Class
 End Namespace

@@ -10,38 +10,88 @@ Module Funciones_Generales
     Public strPasswordSQL As String
     Public strTrustedConnectionSQL As String
 
-    Public Function CargarConexionSQL() As Boolean
-        Dim NombrePrograma As String
-        NombrePrograma = "ContSisFact"
+    ' Ruta de la clave de registro donde se guardan las credenciales de conexión.
+    Private Const RutaConexionBD As String = "Software\ContSisFact\ConexionBD"
+
+    ' Cifra 'texto' con DPAPI (ámbito del usuario actual) y devuelve el Base64 del blob resultante.
+    ' Una cadena vacía devuelve "".
+    Public Function CifrarPassword(ByVal texto As String) As String
+        If String.IsNullOrEmpty(texto) Then Return ""
+        Dim datos As Byte() = System.Text.Encoding.UTF8.GetBytes(texto)
+        Dim cifrado As Byte() = System.Security.Cryptography.ProtectedData.Protect(datos, Nothing, System.Security.Cryptography.DataProtectionScope.CurrentUser)
+        Return Convert.ToBase64String(cifrado)
+    End Function
+
+    ' Intenta descifrar 'valorGuardado' (Base64 de un blob DPAPI).
+    ' Si no es Base64 válido o el descifrado falla, se asume texto plano heredado (migración
+    ' transparente de instalaciones previas) y se devuelve el valor tal cual.
+    ' Una cadena vacía devuelve "".
+    Public Function DescifrarPassword(ByVal valorGuardado As String) As String
+        If String.IsNullOrEmpty(valorGuardado) Then Return ""
         Try
-            Dim RegistroContSis As Microsoft.Win32.RegistryKey = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("Software\" & NombrePrograma, True)
-            Dim R_ConexionBD As Microsoft.Win32.RegistryKey
-            If RegistroContSis Is Nothing Then
-                RegistroContSis = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("Software", True).CreateSubKey(NombrePrograma)
-                R_ConexionBD = RegistroContSis.CreateSubKey("ConexionBD")
-                R_ConexionBD.SetValue("SERVER", "(local)") 'R_ConexionBD.SetValue("SERVER", "192.168.1.12")
-                R_ConexionBD.SetValue("USER", "sa") 'R_ConexionBD.SetValue("USER", "ecsesa")
-                R_ConexionBD.SetValue("PWD", "sa123+") 'R_ConexionBD.SetValue("PWD", "prueba123")
-                R_ConexionBD.SetValue("BASEDATOS", "ECSESA") 'R_ConexionBD.SetValue("BASEDATOS", "Ecsesa")
-            Else
-                R_ConexionBD = RegistroContSis.OpenSubKey("ConexionBD", True)
-                If R_ConexionBD Is Nothing Then
-                    R_ConexionBD = RegistroContSis.CreateSubKey("ConexionBD")
-                    R_ConexionBD.SetValue("SERVER", "(local)") 'R_ConexionBD.SetValue("SERVER", "192.168.1.12")
-                    R_ConexionBD.SetValue("USER", "sa") 'R_ConexionBD.SetValue("USER", "ecsesa")
-                    R_ConexionBD.SetValue("PWD", "sa123+") 'R_ConexionBD.SetValue("PWD", "prueba123")
-                    R_ConexionBD.SetValue("BASEDATOS", "ECSESA") 'R_ConexionBD.SetValue("BASEDATOS", "Ecsesa")
-                End If
+            Dim blob As Byte() = Convert.FromBase64String(valorGuardado)
+            Dim datos As Byte() = System.Security.Cryptography.ProtectedData.Unprotect(blob, Nothing, System.Security.Cryptography.DataProtectionScope.CurrentUser)
+            Return System.Text.Encoding.UTF8.GetString(datos)
+        Catch ex As Exception
+            ' No es un blob DPAPI válido: contraseña en texto plano de una instalación anterior.
+            Return valorGuardado
+        End Try
+    End Function
+
+    Public Function CargarConexionSQL() As Boolean
+        Try
+            ' Leer las credenciales guardadas en el registro (sin crear claves ni escribir valores por defecto).
+            Dim R_ConexionBD As Microsoft.Win32.RegistryKey = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(RutaConexionBD, False)
+
+            Dim server As String = CStr(If(R_ConexionBD IsNot Nothing, R_ConexionBD.GetValue("SERVER", Nothing), Nothing))
+            Dim usuario As String = CStr(If(R_ConexionBD IsNot Nothing, R_ConexionBD.GetValue("USER", Nothing), Nothing))
+            Dim pwdGuardado As String = CStr(If(R_ConexionBD IsNot Nothing, R_ConexionBD.GetValue("PWD", Nothing), Nothing))
+            Dim baseDatos As String = CStr(If(R_ConexionBD IsNot Nothing, R_ConexionBD.GetValue("BASEDATOS", Nothing), Nothing))
+            If R_ConexionBD IsNot Nothing Then R_ConexionBD.Close()
+
+            ' Si la clave no existe o algún dato está incompleto, pedir la configuración al usuario.
+            If String.IsNullOrEmpty(server) OrElse String.IsNullOrEmpty(usuario) OrElse
+               String.IsNullOrEmpty(pwdGuardado) OrElse String.IsNullOrEmpty(baseDatos) Then
+                Using frm As New frmConfigConexion()
+                    If frm.ShowDialog() <> Windows.Forms.DialogResult.OK Then
+                        ' El usuario canceló sin configurar la conexión.
+                        Return False
+                    End If
+                End Using
+
+                ' Releer los valores recién guardados.
+                R_ConexionBD = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(RutaConexionBD, False)
+                If R_ConexionBD Is Nothing Then Return False
+                server = CStr(If(R_ConexionBD.GetValue("SERVER", Nothing), Nothing))
+                usuario = CStr(If(R_ConexionBD.GetValue("USER", Nothing), Nothing))
+                pwdGuardado = CStr(If(R_ConexionBD.GetValue("PWD", Nothing), Nothing))
+                baseDatos = CStr(If(R_ConexionBD.GetValue("BASEDATOS", Nothing), Nothing))
+                R_ConexionBD.Close()
             End If
 
-            strServerSQL = R_ConexionBD.GetValue("SERVER", "(local)")
-            strUserSQL = R_ConexionBD.GetValue("USER", "sa")
-            strPasswordSQL = R_ConexionBD.GetValue("PWD", "sa123+")
-            strBaseDatosSQL = R_ConexionBD.GetValue("BASEDATOS", "ECSESA")
+            ' Descifrar la contraseña. Si el valor venía en texto plano (instalación anterior),
+            ' DescifrarPassword lo devuelve tal cual y luego lo re-escribimos cifrado.
+            Dim pwdDescifrado As String = DescifrarPassword(pwdGuardado)
+            Dim eraTextoPlano As Boolean = (pwdDescifrado = pwdGuardado)
+
+            strServerSQL = server
+            strUserSQL = usuario
+            strPasswordSQL = pwdDescifrado
+            strBaseDatosSQL = baseDatos
             strConexion = "Data Source=" + strServerSQL + ";Initial Catalog=" + strBaseDatosSQL + ";Persist Security Info=True;User ID=" + strUserSQL + ";Password=" & strPasswordSQL & ";Connection Timeout=0"
             CN.ConnectionString = strConexion
-            'CN.ConnectionString = "Dsn=Abacus;sourcedb=\\192.168.1.108\tpm\Aalfs\Abacus\dbfs\;sourcetype=DBF;exclusive=No;backgroundfetch=Yes;collate=Machine" 'strConexion
             CN.Open()
+
+            ' Migración transparente: si la contraseña estaba en texto plano, re-escribirla cifrada.
+            If eraTextoPlano Then
+                Try
+                    Dim R_Actualizar As Microsoft.Win32.RegistryKey = Microsoft.Win32.Registry.CurrentUser.CreateSubKey(RutaConexionBD)
+                    R_Actualizar.SetValue("PWD", CifrarPassword(pwdDescifrado))
+                    R_Actualizar.Close()
+                Catch ex As Exception
+                    ' Si falla la re-escritura, la conexión ya está abierta; no se interrumpe el arranque.
+                End Try
+            End If
 
             CargarConexionSQL = True
             FondoEnfoque = Color.Aquamarine

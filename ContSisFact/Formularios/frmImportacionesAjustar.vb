@@ -2,6 +2,7 @@
     Dim MFormato(0 To 9) As PropLista
 
     ' Panel y controles para mostrar los datos de la fila seleccionada
+    Private pnlOverlay As Panel
     Private pnlModal As Panel
     Private lblNoFactura As Label
     Private lblNoPoliza As Label
@@ -61,13 +62,18 @@
     End Sub
 
     Private Sub InicializarPanelModal()
+        ' Overlay que cubre todo el formulario: bloquea la interaccion con los
+        ' controles de fondo (comportamiento modal) y oscurece ligeramente la vista.
+        pnlOverlay = New Panel()
+        pnlOverlay.Dock = DockStyle.Fill
+        pnlOverlay.BackColor = Color.FromArgb(120, 0, 0, 0)
+        pnlOverlay.Visible = False
+
         pnlModal = New Panel()
         pnlModal.Size = New Size(350, 210)
-        pnlModal.Location = New Point((Me.Width - pnlModal.Width) \ 2, (Me.Height - pnlModal.Height) \ 2)
         pnlModal.BorderStyle = BorderStyle.FixedSingle
         pnlModal.BackColor = Color.WhiteSmoke
         pnlModal.Visible = False
-        pnlModal.BringToFront()
         pnlModal.Anchor = AnchorStyles.None
 
         lblNoFactura = New Label() With {.Text = "No. Factura:", .Location = New Point(20, 20), .AutoSize = True}
@@ -107,16 +113,34 @@
         pnlModal.Controls.Add(btnGuardarModal)
         pnlModal.Controls.Add(btnCerrarModal)
         pnlModal.Controls.Add(btnBorrarModal)
-        Me.Controls.Add(pnlModal)
+
+        ' El panel de edicion vive dentro del overlay; el overlay se agrega al formulario.
+        pnlOverlay.Controls.Add(pnlModal)
+        Me.Controls.Add(pnlOverlay)
+
+        ' Permitir cerrar el panel con la tecla Esc.
+        Me.KeyPreview = True
+        AddHandler Me.KeyDown, AddressOf FormKeyDown
+    End Sub
+
+    Private Sub FormKeyDown(sender As Object, e As KeyEventArgs)
+        If e.KeyCode = Keys.Escape AndAlso pnlOverlay.Visible Then
+            CerrarPanelModal(sender, e)
+            e.Handled = True
+        End If
     End Sub
 
     Private Sub MostrarPanelModal(noFactura As String, noPoliza As String, iva As String, Optional item As ListViewItem = Nothing)
         txtNoFactura.Text = noFactura
         txtNoPoliza.Text = noPoliza
         txtIVA.Text = iva
-        pnlModal.Visible = True
+        ' Centrar el panel dentro del overlay y mostrarlo por encima de todo.
+        pnlModal.Location = New Point((pnlOverlay.Width - pnlModal.Width) \ 2, (pnlOverlay.Height - pnlModal.Height) \ 2)
+        pnlOverlay.Visible = True
+        pnlOverlay.BringToFront()
         pnlModal.BringToFront()
-        pnlModal.Focus()
+        pnlModal.Visible = True
+        txtNoPoliza.Focus()
         selectedListViewItem = item
         ' Habilitar botón borrar solo si hay datos en NoPoliza e IVA
         If Not String.IsNullOrWhiteSpace(noPoliza) AndAlso Not String.IsNullOrWhiteSpace(iva) Then
@@ -130,6 +154,7 @@
 
     Private Sub CerrarPanelModal(sender As Object, e As EventArgs)
         pnlModal.Visible = False
+        pnlOverlay.Visible = False
     End Sub
 
     ' Llamar explícitamente la versión con parámetros para evitar ambigüedad
@@ -155,15 +180,20 @@
             ' Ingreso sin IVA es calculado, no editable ni guardado
             selectedListViewItem.SubItems(8).Text = Math.Round(valorIVA / 0.15, 2).ToString("N2")
         End If
-        ' Actualizar base de datos con ExecuteSQL seguro
-        Dim sql As String = "IF EXISTS (SELECT 1 FROM dsc.Importaciones_Datos WHERE Numero_de_Documento = @NoFactura) " &
+        ' Actualizar base de datos con ExecuteSQL seguro.
+        ' 1) Upsert en dsc.Importaciones_Datos. 2) Actualizar Total_en_Impuesto en Compras.
+        ' Ambas sentencias se ejecutan dentro de una transaccion para mantener la consistencia.
+        Dim sql As String = "BEGIN TRANSACTION; " &
+                            "IF EXISTS (SELECT 1 FROM dsc.Importaciones_Datos WHERE Numero_de_Documento = @NoFactura) " &
                             "BEGIN " &
                             "UPDATE dsc.Importaciones_Datos SET no_factura = @NoPoliza, iva = @IVA WHERE Numero_de_Documento = @NoFactura " &
                             "END " &
                             "ELSE " &
                             "BEGIN " &
                             "INSERT INTO dsc.Importaciones_Datos (Numero_de_Documento, no_factura, iva) VALUES (@NoFactura, @NoPoliza, @IVA) " &
-                            "END"
+                            "END; " &
+                            "UPDATE Compras SET Total_en_Impuesto = @IVA WHERE Numero_de_Documento = @NoFactura; " &
+                            "COMMIT TRANSACTION;"
         Dim parametros As SqlClient.SqlParameter() = {
             New SqlClient.SqlParameter("@NoFactura", txtNoFactura.Text),
             New SqlClient.SqlParameter("@NoPoliza", txtNoPoliza.Text),
@@ -176,10 +206,14 @@
             MsgBox("Error al guardar los datos.", MsgBoxStyle.Critical)
         End If
         pnlModal.Visible = False
+        pnlOverlay.Visible = False
         LLenar_List_View("select C.Numero_de_Documento, C.Fecha, P.Nombre, C.Total_en_Ventas, C.Total_en_Impuesto, C.Total_Neto, ID.no_factura, ID.iva , round(id.iva / 0.15, 2) as Ingreso_Sin_Iva from Compras C left join dsc.Importaciones_Datos ID ON C.Numero_de_Documento = ID.Numero_de_Documento left join proveedores P ON P.codigo_proveedor = c.codigo_proveedor WHERE C.TipoCompra = 2 and c.Anulada = 0 order by C.Fecha  desc", lstLista, CN, MFormato, True, True, True)
     End Sub
 
     Private Sub BorrarPanelModal(sender As Object, e As EventArgs)
+        ' Nota: al borrar solo se elimina el ajuste en dsc.Importaciones_Datos.
+        ' Compras.Total_en_Impuesto se deja con el ultimo valor ajustado (no se revierte),
+        ' porque el valor original calculado por SAIF no se respalda en ningun lado.
         If MsgBox("¿Está seguro que desea borrar este registro?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question) = MsgBoxResult.Yes Then
             Dim sql As String = "DELETE FROM dsc.Importaciones_Datos WHERE Numero_de_Documento = @NoFactura"
             Dim parametros As SqlClient.SqlParameter() = {
@@ -192,6 +226,7 @@
                 MsgBox("Error al borrar el registro.", MsgBoxStyle.Critical)
             End If
             pnlModal.Visible = False
+            pnlOverlay.Visible = False
             LLenar_List_View("select C.Numero_de_Documento, C.Fecha, P.Nombre, C.Total_en_Ventas, C.Total_en_Impuesto, C.Total_Neto, ID.no_factura, ID.iva , round(id.iva / 0.15, 2) as Ingreso_Sin_Iva from Compras C left join dsc.Importaciones_Datos ID ON C.Numero_de_Documento = ID.Numero_de_Documento left join proveedores P ON P.codigo_proveedor = c.codigo_proveedor WHERE C.TipoCompra = 2 and c.Anulada = 0 order by C.Fecha  desc", lstLista, CN, MFormato, True, True, True)
         End If
     End Sub
@@ -200,26 +235,50 @@
         Me.Close()
     End Sub
 
+    ' SQL base comun para el listado de importaciones. El filtro adicional se agrega
+    ' con parametros (@busqueda / @fecha) para evitar inyeccion SQL.
+    Private ReadOnly Property SqlBaseImportaciones As String
+        Get
+            Return "select C.Numero_de_Documento, C.Fecha, P.Nombre, C.Total_en_Ventas, C.Total_en_Impuesto, C.Total_Neto, ID.no_factura, ID.iva , round(id.iva / 0.15, 2) as Ingreso_Sin_Iva " &
+                   "from Compras C " &
+                   "left join dsc.Importaciones_Datos ID ON C.Numero_de_Documento = ID.Numero_de_Documento " &
+                   "left join proveedores P ON P.codigo_proveedor = c.codigo_proveedor " &
+                   "WHERE C.TipoCompra = 2 and c.Anulada = 0"
+        End Get
+    End Property
+
     Private Sub cmdBuscar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdBuscar.Click
         If Vacio(txtTextoBusqueda.Text) Then
-            LLenar_List_View("select C.Numero_de_Documento, C.Fecha, P.Nombre, 	C.Total_en_Ventas, C.Total_en_Impuesto, C.Total_Neto, ID.no_factura, ID.iva , round(id.iva / 0.15, 2) as Ingreso_Sin_Iva from Compras C left join dsc.Importaciones_Datos ID ON C.Numero_de_Documento = ID.Numero_de_Documento left join proveedores P ON P.codigo_proveedor = c.codigo_proveedor WHERE C.TipoCompra = 2 and c.Anulada = 0 order by C.Fecha  desc", lstLista, CN, MFormato, False, True, True)
-        Else
-            If txtTipoBusqueda.SelectedIndex = 0 Then
-                LLenar_List_View("select C.Numero_de_Documento, C.Fecha, P.Nombre, 	C.Total_en_Ventas, C.Total_en_Impuesto, C.Total_Neto, ID.no_factura, ID.iva , round(id.iva / 0.15, 2) as Ingreso_Sin_Iva from Compras C left join dsc.Importaciones_Datos ID ON C.Numero_de_Documento = ID.Numero_de_Documento left join proveedores P ON P.codigo_proveedor = c.codigo_proveedor WHERE C.TipoCompra = 2 and c.Anulada = 0  and Numero_de_Documento like '%" & txtTextoBusqueda.Text & "%' order by C.Fecha  desc", lstLista, CN, MFormato, False, True, True)
-            End If
-            If txtTipoBusqueda.SelectedIndex = 1 Then
-                If IsDate(txtTextoBusqueda.Text) Then
-                    LLenar_List_View("select C.Numero_de_Documento, C.Fecha, P.Nombre, 	C.Total_en_Ventas, C.Total_en_Impuesto, C.Total_Neto, ID.no_factura, ID.iva , round(id.iva / 0.15, 2) as Ingreso_Sin_Iva from Compras C left join dsc.Importaciones_Datos ID ON C.Numero_de_Documento = ID.Numero_de_Documento left join proveedores P ON P.codigo_proveedor = c.codigo_proveedor WHERE C.TipoCompra = 2 and c.Anulada = 0 and Fecha = '" & Format(CDate(txtTextoBusqueda.Text), "yyyy-MM-dd") & "' order by C.Fecha  desc", lstLista, CN, MFormato, False, True, True)
-                Else
+            LLenar_List_View(SqlBaseImportaciones & " order by C.Fecha desc", lstLista, CN, MFormato, False, True, True)
+            Exit Sub
+        End If
+
+        Select Case txtTipoBusqueda.SelectedIndex
+            Case 0 ' No. Factura
+                Dim sql As String = SqlBaseImportaciones & " and C.Numero_de_Documento like '%' + @busqueda + '%' order by C.Fecha desc"
+                Dim parametros As SqlClient.SqlParameter() = {
+                    New SqlClient.SqlParameter("@busqueda", txtTextoBusqueda.Text)
+                }
+                LLenar_List_View(sql, lstLista, CN, MFormato, parametros, False, True, True)
+
+            Case 1 ' Fecha Factura
+                If Not IsDate(txtTextoBusqueda.Text) Then
                     MsgBox("Sr. Usuario: Por favor digite una fecha válida")
                     Exit Sub
                 End If
-            End If
+                Dim sql As String = SqlBaseImportaciones & " and C.Fecha = @fecha order by C.Fecha desc"
+                Dim parametros As SqlClient.SqlParameter() = {
+                    New SqlClient.SqlParameter("@fecha", SqlDbType.DateTime) With {.Value = CDate(txtTextoBusqueda.Text)}
+                }
+                LLenar_List_View(sql, lstLista, CN, MFormato, parametros, False, True, True)
 
-            If txtTipoBusqueda.SelectedIndex = 2 Then
-                LLenar_List_View("select C.Numero_de_Documento, C.Fecha, P.Nombre, 	C.Total_en_Ventas, C.Total_en_Impuesto, C.Total_Neto, ID.no_factura, ID.iva , round(id.iva / 0.15, 2) as Ingreso_Sin_Iva from Compras C left join dsc.Importaciones_Datos ID ON C.Numero_de_Documento = ID.Numero_de_Documento left join proveedores P ON P.codigo_proveedor = c.codigo_proveedor WHERE C.TipoCompra = 2 and c.Anulada = 0 and Nombre_del_Cliente like '%" & txtTextoBusqueda.Text & "%' order by C.Fecha  desc", lstLista, CN, MFormato, False, True, True)
-            End If
-        End If
+            Case 2 ' Proveedor
+                Dim sql As String = SqlBaseImportaciones & " and P.Nombre like '%' + @busqueda + '%' order by C.Fecha desc"
+                Dim parametros As SqlClient.SqlParameter() = {
+                    New SqlClient.SqlParameter("@busqueda", txtTextoBusqueda.Text)
+                }
+                LLenar_List_View(sql, lstLista, CN, MFormato, parametros, False, True, True)
+        End Select
     End Sub
 
     Private Sub txtTextoBusqueda_Enter(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtTextoBusqueda.Enter
@@ -243,5 +302,9 @@
             Dim item = lstLista.SelectedItems(0)
             MostrarPanelModal(item.SubItems(0).Text, item.SubItems(6).Text, item.SubItems(7).Text, item)
         End If
+    End Sub
+
+    Private Sub lstLista_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstLista.SelectedIndexChanged
+
     End Sub
 End Class

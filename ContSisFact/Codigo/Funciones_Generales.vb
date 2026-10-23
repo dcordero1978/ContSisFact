@@ -118,6 +118,78 @@ Module Funciones_Generales
         End Try
     End Sub
 
+    ' Sobrecarga de LLenar_List_View que acepta parametros SQL para evitar inyeccion.
+    ' Usa consultas parametrizadas (@parametro) en lugar de concatenar texto del usuario.
+    Public Sub LLenar_List_View(ByVal SQL As String, ByVal Lista As ListView, ByVal sqlConn As SqlClient.SqlConnection, ByVal Formato() As PropLista, ByVal Parametros As SqlClient.SqlParameter(), Optional ByVal LimpiarColumnas As Boolean = True, Optional ByVal LimpiarDatos As Boolean = True, Optional ByVal TieneFormato As Boolean = False)
+        Dim ds As DataSet
+        Dim SqlDA As New SqlClient.SqlDataAdapter
+        Dim cmd As New SqlClient.SqlCommand(SQL, sqlConn)
+        Dim rst As DataRow
+        Dim Col As DataColumn
+        Dim Item As ListViewItem
+
+        If Not cmd.Connection.State = ConnectionState.Open Then
+            cmd.Connection.Open()
+        End If
+        Try
+            SqlDA.SelectCommand = cmd
+            cmd.CommandType = CommandType.Text
+            cmd.CommandTimeout = 0
+            If Parametros IsNot Nothing Then
+                cmd.Parameters.AddRange(Parametros)
+            End If
+            ds = New DataSet
+            SqlDA.Fill(ds)
+
+            If LimpiarDatos Then
+                Lista.Items.Clear()
+            End If
+
+            If LimpiarColumnas Then
+                Lista.Columns.Clear()
+                For Each Col In ds.Tables(0).Columns
+                    If TieneFormato Then
+                        Lista.Columns.Add(Formato(Col.Ordinal).Titulo, Formato(Col.Ordinal).Tamano, Formato(Col.Ordinal).Alineacion)
+                    Else
+                        Lista.Columns.Add(Col.ColumnName, 100, HorizontalAlignment.Left)
+                    End If
+                Next Col
+            End If
+
+            For Each rst In ds.Tables(0).Rows
+                Item = New ListViewItem
+                For Each Col In ds.Tables(0).Columns
+                    If Col.Ordinal = 0 Then
+                        If TieneFormato Then
+                            If Vacio(IIf(IsDBNull(rst(Col.ColumnName)), "", rst(Col.ColumnName))) Then
+                                Item.Text = ""
+                            Else
+                                Item.Text = Microsoft.VisualBasic.Format(IIf(IsDBNull(rst(Col.ColumnName)), "", rst(Col.ColumnName)), Formato(Col.Ordinal).Formato)
+                            End If
+                        Else
+                            Item.Text = IIf(IsDBNull(rst(Col.ColumnName)), "", rst(Col.ColumnName))
+                        End If
+                    Else
+                        If TieneFormato Then
+                            If Vacio(IIf(IsDBNull(rst(Col.ColumnName)), "", rst(Col.ColumnName))) Then
+                                Item.SubItems.Add("")
+                            Else
+                                Item.SubItems.Add(Microsoft.VisualBasic.Format(IIf(IsDBNull(rst(Col.ColumnName)), "", rst(Col.ColumnName)), Formato(Col.Ordinal).Formato))
+                            End If
+
+                        Else
+                            Item.SubItems.Add(IIf(IsDBNull(rst(Col.ColumnName)), "", rst(Col.ColumnName)))
+                        End If
+                    End If
+                Next Col
+                Lista.Items.Add(Item)
+            Next rst
+        Catch ex As Exception
+            MensageError(ex)
+        Finally
+        End Try
+    End Sub
+
     Public Function DameValorLista(ByVal Lista As ListView, ByVal Fila As Integer, ByVal Columna As Integer) As String
         DameValorLista = ""
         Try

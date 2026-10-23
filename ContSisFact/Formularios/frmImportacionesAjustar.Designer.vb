@@ -31,14 +31,14 @@ Partial Class frmImportacionesAjustar
         Me.NoFactura = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.FechaFactura = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.NoPoliza = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.IVA = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.IngresoSinIVA = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.cmdSalir = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.cmdBuscar = New System.Windows.Forms.Button()
         Me.txtTextoBusqueda = New System.Windows.Forms.TextBox()
         Me.txtTipoBusqueda = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.IVA = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.IngresoSinIVA = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.SuspendLayout()
         '
         'cmdActualizar
@@ -108,6 +108,18 @@ Partial Class frmImportacionesAjustar
         Me.NoPoliza.Text = "NoPoliza"
         Me.NoPoliza.Width = 95
         '
+        'IVA
+        '
+        Me.IVA.Text = "IVA"
+        Me.IVA.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.IVA.Width = 118
+        '
+        'IngresoSinIVA
+        '
+        Me.IngresoSinIVA.Text = "Ingreso Sin IVA"
+        Me.IngresoSinIVA.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.IngresoSinIVA.Width = 135
+        '
         'cmdSalir
         '
         Me.cmdSalir.Image = Global.ContSisFact.My.Resources.Resources.EXIT00C
@@ -153,7 +165,7 @@ Partial Class frmImportacionesAjustar
         'txtTipoBusqueda
         '
         Me.txtTipoBusqueda.FormattingEnabled = True
-        Me.txtTipoBusqueda.Items.AddRange(New Object() {"No. Factura", "Fecha Factura", "Cliente"})
+        Me.txtTipoBusqueda.Items.AddRange(New Object() {"No. Factura", "Fecha Factura", "Proveedor"})
         Me.txtTipoBusqueda.Location = New System.Drawing.Point(136, 83)
         Me.txtTipoBusqueda.Margin = New System.Windows.Forms.Padding(4)
         Me.txtTipoBusqueda.Name = "txtTipoBusqueda"
@@ -169,18 +181,6 @@ Partial Class frmImportacionesAjustar
         Me.Label2.Size = New System.Drawing.Size(75, 16)
         Me.Label2.TabIndex = 33
         Me.Label2.Text = "Buscar por:"
-        '
-        'IVA
-        '
-        Me.IVA.Text = "IVA"
-        Me.IVA.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.IVA.Width = 118
-        '
-        'IngresoSinIVA
-        '
-        Me.IngresoSinIVA.Text = "Ingreso Sin IVA"
-        Me.IngresoSinIVA.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.IngresoSinIVA.Width = 135
         '
         'frmImportacionesAjustar
         '

@@ -183,6 +183,7 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Security" />
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -260,6 +261,12 @@
       <DependentUpon>frmHabilitarPrecios.vb</DependentUpon>
     </Compile>
     <Compile Include="Formularios\frmHabilitarPrecios.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\frmConfigConexion.Designer.vb">
+      <DependentUpon>frmConfigConexion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\frmConfigConexion.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Formularios\frmImportacionesAjustar.Designer.vb">
@@ -368,6 +375,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frmHabilitarPrecios.resx">
       <DependentUpon>frmHabilitarPrecios.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\frmConfigConexion.resx">
+      <DependentUpon>frmConfigConexion.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\frmImportacionesAjustar.resx">
       <DependentUpon>frmImportacionesAjustar.vb</DependentUpon>

@@ -57,8 +57,7 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=(local);Initial Catalog=ECSESA;Persist Security Info=True;User ID=sa;"& _ 
-            "Password=sa123+")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=(local);Initial Catalog=ECSESA;Integrated Security=True")>  _
         Public ReadOnly Property MiConSettings() As String
             Get
                 Return CType(Me("MiConSettings"),String)

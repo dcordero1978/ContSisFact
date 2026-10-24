@@ -338,3 +338,7 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+
+# Artefactos de workflows de agentes y worktrees locales
+.agents/
+.worktrees/
